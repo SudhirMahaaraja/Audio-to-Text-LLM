@@ -1,1 +1,143 @@
 # Audio-to-Text-LLM
+
+A Python project designed to handle audio-to-text conversion, language model processing, and text-to-speech functionality. This project allows you to record or upload an audio file, transcribe it using the Whisper model, generate a response using a language model (LLM), and convert the text response into speech using Google Text-to-Speech (gTTS).
+
+## Table of Contents
+
+1. [Features](#features)
+2. [Prerequisites](#prerequisites)
+3. [Installation](#installation)
+4. [Usage](#usage)
+5. [Configuration](#configuration)
+6. [File Structure](#file-structure)
+7. [License](#license)
+8. [Troubleshooting](#troubleshooting)
+9. [Contributing](#contributing)
+10. [Acknowledgements](#acknowledgements)
+
+## Features
+
+- **Audio Recording:** Record audio directly from your microphone for a specified duration.
+- **Audio Transcription:** Transcribe recorded or uploaded audio using the Whisper model for accurate speech-to-text conversion.
+- **Language Model Response Generation:** Use a pre-trained language model (LLM) to generate responses based on transcribed text.
+- **Text-to-Speech Conversion:** Convert generated text responses to speech using Google Text-to-Speech (gTTS) and play the audio.
+- **File Management:** Save transcriptions and generated responses as text files for future reference.
+
+## Prerequisites
+
+Before you begin, ensure you have met the following requirements:
+
+- **Python 3.8 or higher**: Make sure you have Python installed. You can download it from [python.org](https://www.python.org/downloads/).
+- **CUDA-compatible GPU (optional)**: Recommended for faster processing if you plan to use GPU acceleration with the Whisper and LLM models.
+- **System Dependencies**:
+  - `sounddevice` library dependencies: On Windows, it works out of the box. On Linux, you might need to install additional libraries like `libportaudio2`.
+  - `pydub` library dependencies: Requires `ffmpeg` or `libav` for audio processing. Ensure these are installed and in your system PATH.
+
+## Installation
+
+1. **Clone the Repository**
+
+    Clone this repository to your local machine using the following command:
+
+    ```bash
+    git clone https://github.com/your-username/Audio-to-Text-LLM.git
+    cd Audio-to-Text-LLM
+    ```
+
+2. **Set Up a Virtual Environment (Recommended)**
+
+    It is recommended to use a virtual environment to manage dependencies:
+
+    ```bash
+    python -m venv venv
+    source venv/bin/activate  # On Windows, use `venv\Scripts\activate`
+    ```
+
+3. **Install Python Dependencies**
+
+    Install the required Python packages using the `requirements.txt` file:
+
+    ```bash
+    pip install -r requirements.txt
+    ```
+
+4. **Install System Dependencies**
+
+    Ensure you have `ffmpeg` installed on your system for audio processing:
+
+    - **Linux**: Install via package manager, e.g., `sudo apt-get install ffmpeg`
+    - **Mac**: Install using Homebrew, e.g., `brew install ffmpeg`
+    - **Windows**: Download from the [FFmpeg official website](https://ffmpeg.org/download.html) and add it to your system PATH.
+
+## Usage
+
+To use this project, follow these steps:
+
+1. **Run the Main Script**
+
+    Execute the main script to start the program:
+
+    ```bash
+    python main.py
+    ```
+
+2. **Choose an Option**
+
+    After running the script, you will be prompted to choose one of the following options:
+
+    - **Record audio**: Allows you to record audio using your microphone. You will be asked to specify the duration of the recording in seconds.
+    - **Upload an audio file**: Allows you to use an existing audio file. You will need to provide the path to the file.
+    - **Use an existing audio file in the project directory**: Choose an audio file already present in the project directory.
+
+3. **Transcription**
+
+    The selected audio file will be transcribed using the Whisper model. The transcribed text will be displayed and saved to `text_files/text.txt`.
+
+4. **Generate Response**
+
+    The transcribed text will be processed by a pre-trained language model to generate a response. This response will be saved to `text_files/response.txt`.
+
+5. **Text-to-Speech Conversion**
+
+    The generated response will be converted to speech and played back using gTTS.
+
+## Configuration
+
+You can configure the behavior of the script by modifying the following:
+
+- **Recording Duration**: Change the default duration for recording in the `record_audio()` function.
+- **Language Model Parameters**: Adjust settings such as `max_length`, `temperature`, `top_k`, and `top_p` in the `text_to_llm()` function to control the output of the language model.
+
+## File Structure
+
+- `main.py`: The main Python script that runs the program.
+- `audio/`: Directory for storing recorded audio files.
+- `text_files/`: Directory for storing transcriptions and LLM responses.
+  - `text.txt`: Contains the transcribed text from the audio file.
+  - `response.txt`: Contains the response generated by the language model.
+
+## Troubleshooting
+
+- **Error: 'Communicator' not found in `edge-tts` library**: Make sure you are using the correct function name, which should be `Communicate`.
+- **No audio playback**: Ensure `ffmpeg` is installed and properly configured in your system PATH. Check if the audio file exists in the expected directory.
+- **CUDA Error**: If using a GPU, make sure your drivers and CUDA toolkit are installed and configured correctly. If not using a GPU, set the device to `-1` in the `text_to_llm()` function.
+
+## Contributing
+
+Contributions are welcome! To contribute:
+
+1. Fork the repository.
+2. Create a new branch (`git checkout -b feature-branch`).
+3. Commit your changes (`git commit -m 'Add some feature'`).
+4. Push to the branch (`git push origin feature-branch`).
+5. Open a Pull Request.
+
+Please ensure your code adheres to the project's coding style and passes all tests.
+
+## Acknowledgements
+
+- Whisper by OpenAI: [Whisper GitHub](https://github.com/openai/whisper)
+- Hugging Face Transformers: [Hugging Face Transformers](https://huggingface.co/transformers/)
+- Google Text-to-Speech (gTTS): [gTTS GitHub](https://github.com/pndurette/gTTS)
+- pydub: [pydub GitHub](https://github.com/jiaaro/pydub)
+- FFmpeg: [FFmpeg Official Website](https://ffmpeg.org/)
