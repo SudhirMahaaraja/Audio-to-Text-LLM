@@ -1,0 +1,7 @@
+whisper
+sounddevice
+scipy
+torch
+transformers
+gtts
+pydub
